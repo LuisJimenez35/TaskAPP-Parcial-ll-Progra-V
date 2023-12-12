@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>App de Tareas</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Contenido de la aplicación -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">App de Tareas</a>
+    </nav>
+    @foreach (var item in ViewBag.TaskData)
+    {
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Tareas Pendientes</h2>
+                    <ul class="list-group" id="taskList">
+                        <h3>Title: @item.Title</h3>
+                        <p>Description: @item.Description</p>
+                        <p>DueDate: @item.DueDate</p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplo de tarea en la lista -->
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>Nombre de la Tarea</span>
+            <div>
+                <span class="badge badge-primary badge-pill">@item.Priority</span>
+                <button type="button" class="btn btn-success btn-sm">Completada</button>
+                <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+            </div>
+        </li>
+    }
+
+
+
+    <!-- Formulario para agregar nuevas tareas -->
+    <form id="taskForm">
+        <div class="form-group">
+            <label for="taskTitle">Título de la Tarea</label>
+            <input type="text" class="form-control" id="taskTitle" required>
+        </div>
+        <div class="form-group">
+            <label for="taskDescription">Descripción</label>
+            <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="dueDate">Fecha de Vencimiento</label>
+            <input type="date" class="form-control" id="dueDate" required>
+        </div>
+        <div class="form-group">
+            <label for="priority">Prioridad</label>
+            <select class="form-control" id="priority" required>
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Tarea</button>
+    </form>
+
+</body>
+</html>
